@@ -1,0 +1,36 @@
+import { useState } from 'react';
+import Tours from './components/Tours.jsx'
+import data from './data.js'
+
+const App = () => {
+  const [tours, setTours] = useState(data)
+  function removeTour(id) {
+    let newTours = tours.filter(tour => {
+      return tour.id != id
+    })
+    setTours(newTours);
+
+  }
+  function refreshPage() {
+    window.location.reload()
+  }
+
+  if (!tours.length) {
+    return (
+      <>
+        <div className="refresh">
+          'Empty hogaya!'
+          <button className='btnWhite' onClick={refreshPage}>Refresh</button>
+        </div>
+      </>
+    )
+  }
+  return (
+    <>
+      <Tours tours={tours} removeTour={removeTour}></Tours>
+    </>
+  )
+
+};
+
+export default App;
