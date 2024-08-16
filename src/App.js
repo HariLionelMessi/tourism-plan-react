@@ -5,6 +5,7 @@ import data from './data.js'
 const App = () => {
   const [tours, setTours] = useState(data)
   function removeTour(id) {
+    id = Number.parseInt(id)
     let newTours = tours.filter(tour => {
       return tour.id !== id
     })
